@@ -117,6 +117,24 @@
             .tree-area { height: 400px; flex: 1; width: 100%; }
             .realistic-trunk-img { height: 85%; }
         }
+         /* --- ESTILOS DEL BOTÓN --- */
+        .action-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 25px;
+            background-color: #ec407a; /* Mismo rosa que el tema */
+            color: white;
+            text-decoration: none; /* Quita el subrayado */
+            font-weight: bold;
+            border-radius: 50px; /* Bordes redondos */
+            box-shadow: 0 5px 15px rgba(236, 64, 122, 0.4);
+            transition: transform 0.3s ease;
+        }
+
+        .action-btn:hover {
+            transform: scale(1.1); /* Crece un poco al pasar el mouse */
+            background-color: #d81b60;
+        }
     </style>
 </head>
 <body>
@@ -127,11 +145,13 @@
 
     <div class="card" id="main-card">
         <div class="content">
-            <h1>Para el amor de mi vida:</h1>
+            <h1>Para la mejor amiga gracias por estar en mi vida:</h1>
             <p id="typewriter-text"></p>
             <div id="timer">
-                Mi amor por ti comenzó hace...
+                Nuestra amistad comenzó hace...PD: Desde que naci jajajaja.
                 <span id="time-display">Calculando...</span>
+                 <a href="https://open.spotify.com/intl-es/track/7l1qvxWjxcKpB9PCtBuTbU?si=19fbb02c705e45d6" class="action-btn" target="_blank">
+                Para Ti 🎵
             </div>
         </div>
 
@@ -144,8 +164,8 @@
 
     <script>
         // --- CONFIGURACIÓN ---
-        const fechaInicio = new Date('2024-02-14T00:00:00'); 
-        const mensaje = "Si pudiera elegir un lugar seguro, sería a tu lado. Cuanto más tiempo estoy contigo, más te amo. ¡Feliz San Valentín!";
+        const fechaInicio = new Date('2005-11-19T00:00:00'); 
+        const mensaje = "Si pudiera elegir un lugar seguro, sería a tu lado. Cuanto más tiempo estoy contigo, más te quiero. ¡Feliz San Valentín!";
         
         // NUEVA PALETA DE COLORES: Rosas suaves de cerezo (Sakura)
         const sakuraColors = [
@@ -260,4 +280,5 @@
         }
     </script>
 </body>
+
 </html>
