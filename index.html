@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para Ti ❤️</title>
     <style>
-        /* --- ESTILOS GENERALES --- */
+        /* --- ESTILOS GENERALES (Esto aplica a todo) --- */
         @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
 
         :root {
-            --bg-color: #fff0f5; /* Fondo ligeramente más rosado */
+            --bg-color: #fff0f5;
             --card-bg: #fffbf0;
             --text-color: #5d4037;
         }
@@ -18,16 +18,15 @@
             margin: 0; padding: 0; min-height: 100vh;
             display: flex; justify-content: center; align-items: center;
             background-color: var(--bg-color);
-            /* Patrón de fondo más suave */
             background-image: radial-gradient(#ffc1e3 10%, transparent 11%);
             background-size: 25px 25px;
             font-family: 'Nunito', sans-serif;
-            overflow: hidden;
+            overflow: hidden; /* En PC no queremos barras de scroll */
         }
 
         #intro-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #ec407a; /* Rosa más cerezo */
+            background: #ec407a;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             z-index: 100; transition: opacity 0.8s ease;
         }
@@ -39,12 +38,13 @@
 
         .click-text { color: white; margin-top: 15px; font-size: 1.5rem; font-weight: bold; }
 
+        /* --- ESTILOS DE LA TARJETA (Modo Computadora por defecto) --- */
         .card {
             background-color: var(--card-bg);
             width: 900px; max-width: 95%; height: 550px;
             border-radius: 25px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            position: relative; display: flex; flex-direction: row;
+            position: relative; display: flex; flex-direction: row; /* Lado a lado */
             overflow: hidden; opacity: 0; transform: scale(0.95); transition: all 1s ease;
         }
 
@@ -66,7 +66,6 @@
             display: block; font-weight: 800; font-size: 1.3rem; margin-top: 5px; color: #ec407a;
         }
 
-        /* --- ÁREA DEL ÁRBOL --- */
         .tree-area {
             flex: 1; position: relative;
             display: flex; justify-content: center; align-items: flex-end;
@@ -74,66 +73,77 @@
             border-bottom-right-radius: 25px;
         }
 
-        /* ESTILOS DE TU IMAGEN LOCAL */
         .realistic-trunk-img {
-            height: 90%; 
-            width: auto;
+            height: 90%; width: auto;
             position: absolute; bottom: 0; z-index: 1;
             object-fit: contain;
             filter: drop-shadow(0px 10px 10px rgba(0,0,0,0.3));
         }
 
-        /* Contenedor de hojas */
         .leaves-container {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             z-index: 2; pointer-events: none;
         }
 
-        /* --- NUEVO ESTILO: PÉTALO DE CEREZO (Sakura) --- */
         .sakura-petal {
             position: absolute;
-            width: 14px; height: 20px; /* Forma más alargada */
-            /* Esta línea crea la forma de pétalo usando bordes redondeados opuestos */
+            width: 14px; height: 20px;
             border-radius: 100% 0 100% 0;
             opacity: 0.9;
-            /* Sombra suave rosada */
             filter: drop-shadow(1px 1px 1px rgba(165, 42, 42, 0.2));
         }
-        /* Ya no necesitamos los ::before y ::after del corazón */
 
         .static-leaf { z-index: 2; transform: rotate(var(--r)) scale(var(--s)); }
         .flying-leaf { z-index: 3; animation: fly-away 7s linear forwards; }
 
         @keyframes beat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
         @keyframes fly-away {
-            /* La animación de vuelo ahora incluye un pequeño giro (tumble) */
             0% { transform: translate(0, 0) rotate(var(--start-r, 45deg)) scale(1); opacity: 1; }
             100% { transform: translate(-550px, 150px) rotate(var(--end-r, -90deg)) scale(0); opacity: 0; }
         }
 
-        @media (max-width: 850px) {
-            .card { flex-direction: column-reverse; height: 90vh; width: 90%; }
-            .content { padding: 30px; text-align: center; flex: none; }
-            .tree-area { height: 400px; flex: 1; width: 100%; }
-            .realistic-trunk-img { height: 85%; }
-        }
-         /* --- ESTILOS DEL BOTÓN --- */
         .action-btn {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 25px;
-            background-color: #ec407a; /* Mismo rosa que el tema */
-            color: white;
-            text-decoration: none; /* Quita el subrayado */
-            font-weight: bold;
-            border-radius: 50px; /* Bordes redondos */
+            display: inline-block; margin-top: 20px; padding: 10px 25px;
+            background-color: #ec407a; color: white; text-decoration: none;
+            font-weight: bold; border-radius: 50px;
             box-shadow: 0 5px 15px rgba(236, 64, 122, 0.4);
             transition: transform 0.3s ease;
         }
+        .action-btn:hover { transform: scale(1.1); background-color: #d81b60; }
 
-        .action-btn:hover {
-            transform: scale(1.1); /* Crece un poco al pasar el mouse */
-            background-color: #d81b60;
+        /* --- MODO CELULAR (Solo se activa en pantallas pequeñas) --- */
+        @media (max-width: 850px) {
+            body { 
+                overflow-y: auto; /* Permitir bajar con el dedo */
+                align-items: flex-start; /* Empezar arriba */
+                padding: 20px 0;
+            }
+
+            .card { 
+                flex-direction: column-reverse; /* Árbol arriba, texto abajo */
+                height: auto; /* Altura automática según el texto */
+                min-height: 80vh; 
+                width: 90%; 
+                overflow: visible; /* Deja que el contenido respire */
+            }
+
+            .content { 
+                padding: 20px; text-align: center; flex: none; 
+            }
+
+            .tree-area { 
+                height: 300px; /* Le damos espacio fijo al árbol */
+                width: 100%; flex: none; 
+                position: relative;
+            }
+
+            /* Ajuste especial para que el tronco no se deforme en celular */
+            .realistic-trunk-img {
+                height: 100%; 
+                width: auto;
+                left: 50%; 
+                transform: translateX(-50%); /* Centrarlo */
+            }
         }
     </style>
 </head>
@@ -149,7 +159,7 @@
             <p id="typewriter-text"></p>
             <div id="timer">
                 Nuestra amistad comenzó hace... <br> 
-                PD: Desde que naci jajajaja.
+                PD: Desde que nací jajajaja.
                 <span id="time-display">Calculando...</span>
                  <a href="https://open.spotify.com/intl-es/track/7l1qvxWjxcKpB9PCtBuTbU?si=19fbb02c705e45d6" class="action-btn" target="_blank">
                 Para Ti 🎵
@@ -284,4 +294,5 @@
 </body>
 
 </html>
+
 
