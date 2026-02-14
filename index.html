@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para Ti ❤️</title>
     <style>
-        /* --- ESTILOS GENERALES (Esto aplica a todo) --- */
+        /* --- ESTILOS GENERALES --- */
         @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
 
         :root {
@@ -21,7 +21,7 @@
             background-image: radial-gradient(#ffc1e3 10%, transparent 11%);
             background-size: 25px 25px;
             font-family: 'Nunito', sans-serif;
-            overflow: hidden; /* En PC no queremos barras de scroll */
+            overflow: hidden; 
         }
 
         #intro-screen {
@@ -181,7 +181,7 @@
         const fechaInicio = new Date('2005-11-19T00:00:00'); 
         const mensaje = "Si pudiera elegir un lugar seguro, sería a tu lado. Cuanto más tiempo estoy contigo, más te quiero. ¡Feliz San Valentín!";
         
-        // NUEVA PALETA DE COLORES: Rosas suaves de cerezo (Sakura)
+        // PALETA DE COLORES: Rosas suaves de cerezo
         const sakuraColors = [
             '#ffcdd2', // Rosa muy claro
             '#f8bbd0', // Rosa pastel
@@ -226,21 +226,21 @@
         // Función renombrada a createPetal
         function createPetal(container, className, isStatic) {
             const petal = document.createElement('div');
-            // Usamos la nueva clase .sakura-petal
+            // Usamos la clase .sakura-petal
             petal.classList.add('sakura-petal', className);
             
-            // Usamos la nueva paleta de colores
+            // Usamos la paleta de colores
             const color = sakuraColors[Math.floor(Math.random() * sakuraColors.length)];
             petal.style.backgroundColor = color;
 
             let leftPos, topPos;
 
             if (isStatic) {
-                // Copa redonda (Igual que antes, funciona bien para cerezos)
+                // Copa redonda 
                 const angle = Math.random() * Math.PI * 2; 
                 const radius = Math.sqrt(Math.random()); 
                 
-                // AJUSTA ESTOS VALORES SI TU TRONCO LO NECESITA
+                
                 const centerX = 50;
                 const centerY = 35;
                 const spreadX = 30; // Un poco más ancho
@@ -271,8 +271,7 @@
             petal.style.left = `${leftPos}%`;
             petal.style.top = `${topPos}%`;
 
-            // ¡El hack complejo de colores ya no es necesario!
-            // Simplemente añadimos el div al contenedor.
+            
             container.appendChild(petal);
         }
 
@@ -296,6 +295,7 @@
 </body>
 
 </html>
+
 
 
 
